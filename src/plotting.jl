@@ -1,7 +1,7 @@
 using CSV
 
 # Import 
-cfd_data = CSV.read("./csv/cfd.csv")
+cfd_data = CSV.File("./CFDdata.csv")
 wt_data = CSV.read("./csv/wind_tunnel.csv")
 
 data = {"CFD" => cfd_data, "Wind Tunnel" => wt_data}
