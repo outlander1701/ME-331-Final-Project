@@ -43,4 +43,4 @@ x = m / (C_D * ρ * A)
 F_t = ((m * v^2)/(2 * x)) + ((C_D * ρ * v^2 * A) / 2)
 
 
-println(x, " ", F_t)
+println(v, " ", C_D)
