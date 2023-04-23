@@ -17,7 +17,7 @@ C_D_0 = 0.5686416841355989
 A = 153.125 # m^2
 m = 45000
 
-F_D = 0.5(C_D * ρ * A * v_0^2)
+F_D = 0.5(C_D_0 * ρ * A * v_0^2)
 F_B = 42000
 a_0 = (-F_D - F_B)/m
 
@@ -62,11 +62,9 @@ end
 prob = ODEProblem(airplane_landing, u₀, t_span)
 sol = solve(prob, Tsit5())
 
-println(sol.u[:,1])
-
-
 
 #println(sol[1, 1])
+"""
 dt = (t_span[2] - t_span[1]) / length(sol)
 tspan = 0:dt:t_span[2]
 search_index = 0;
@@ -76,10 +74,12 @@ for i ∈ eachindex(sol)
         break
     end
 end
+"""
+"""
+vel_vec = []
+for pt ∈ sol.u
+    push!(vel_vec, pt[1])
+end
 
-#vel = sol(my_time)[1]
-
-vel_vec = sol.(0:dt:t_span[2])
-
-plot(sol.t, sol.u[:,1])
-#function trapezoid()
+plot(vel_vec)
+"""
