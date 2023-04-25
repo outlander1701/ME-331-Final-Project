@@ -16,7 +16,7 @@ for i ∈ 2:10
 end
 
 # Params
-velocity = 45
+velocity = 60
 α = 0
 ρ = (23.77 * 10^(-4)) * (12^3) # https://www.engineeringtoolbox.com/standard-atmosphere-d_604.html
 A = 3.5
@@ -84,6 +84,7 @@ v = velocity * (5280*12)/(60*60) # in/s
 C_L = (2 * ΣF) / (A * ρ * v^2)
 
 println("\n+===================================+")
+println("ΣF [lbf]: ", ΣF)
 println("Velocity [MPH]: ", velocity)
 println("α [°]: ", α)
 println("C_L: ", C_L)
