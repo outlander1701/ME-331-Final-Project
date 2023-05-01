@@ -16,10 +16,10 @@ C_l = Coefficient(F_l, V)
 Cd_sorted = reshape(C_d, 4, 8)
 Cl_sorted = reshape(C_l, 4, 8)
 α_sorted = reshape(α, 4, 8)
-
+#print(α_sorted)
 #plot_c_vs_α(α_sorted, Cl_sorted)
 
-plot_c_vs_α(α_sorted, Cd_sorted)
+#plot_c_vs_α(α_sorted, Cd_sorted)
 
-print(C_l)
+#print(C_l)
 #print(V)
