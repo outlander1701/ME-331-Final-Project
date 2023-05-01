@@ -19,5 +19,7 @@ Cl_sorted = reshape(C_l, 4, 8)
 
 #plot_c_vs_α(α_sorted, Cl_sorted)
 
-plot_c_vs_α(α_sorted, Cd_sorted)
-print(Cl_sorted)
+#plot_c_vs_α(α_sorted, Cd_sorted)
+
+print(C_l)
+#print(V)

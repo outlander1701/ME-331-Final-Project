@@ -1,11 +1,11 @@
 using CSV
 using DataFrames
 
-wt_data = CSV.File("./csv/wind_tunnel_test.csv")
+wt_data = CSV.File("./csv/wind_tunnel_data_Frenchies.csv")
 
 # Params
-velocity = 50
-α = 0
+velocity = 65
+α = 10
 
 function trap_int(x, y)
     sum = 0
@@ -34,20 +34,20 @@ vel_index = find_index(wt_data, velocity, α)
 # Integrating the bottom
 bottom_indices = (10 + vel_index):(16 + vel_index)
 
-lengths_bottom = wt_data["Distance [in]"][bottom_indices]
+lengths_bottom = wt_data["Distance [m]"][bottom_indices]
 
-bottom_extrap = wt_data["Pressure AVG [psi]"][bottom_indices[end]] * (3.5*0.0254 - lengths_bottom[end]) * 1
+bottom_extrap = wt_data["Pressure AVG"][bottom_indices[end]] * (3.5*0.0254 - lengths_bottom[end]) * 1
 
-bottom_force = (trap_int(lengths_bottom, wt_data["Pressure AVG [psi]"][bottom_indices]) * 1) + bottom_extrap
+bottom_force = (trap_int(lengths_bottom, wt_data["Pressure AVG"][bottom_indices]) * 1) + bottom_extrap
 
 
 # Top Integrations
 top_indices = (1 + vel_index):(9 + vel_index)
 
-lengths_top = wt_data["Distance [in]"][top_indices]
+lengths_top = wt_data["Distance [m]"][top_indices]
 
-P_10 = wt_data["Pressure AVG [psi]"][top_indices[end]]
-P_9 = wt_data["Pressure AVG [psi]"][top_indices[length(lengths_top) -  1]]
+P_10 = wt_data["Pressure AVG"][top_indices[end]]
+P_9 = wt_data["Pressure AVG"][top_indices[length(lengths_top) -  1]]
 L_10 = lengths_top[end]
 L_9 = lengths_top[end - 1]
 L_end = 3.5*0.0254
@@ -59,7 +59,7 @@ P_end = ((P_10 - P_9) / (L_10 - L_9)) * (L_end - L_10) + P_10
 
 top_extrap =  P_end * (L_end - L_10) + 0.5*(P_10-P_end)*(L_end - L_10)
 
-top_force = trap_int(lengths_top, wt_data["Pressure AVG [psi]"][top_indices]) * 1 + top_extrap
+top_force = trap_int(lengths_top, wt_data["Pressure AVG"][top_indices]) * 1 + top_extrap
 
 # Calculate C_L
 ΣF_freedom = bottom_force - top_force # lbf
