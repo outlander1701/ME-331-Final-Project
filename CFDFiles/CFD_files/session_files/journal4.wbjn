@@ -1,0 +1,25 @@
+# encoding: utf-8
+# 2023 R1
+SetScriptVersion(Version="23.1.153")
+system1 = GetSystem(Name="FFF 1")
+system1.Copy(KeepConnections=True)
+system2 = GetSystem(Name="FFF 7")
+system3 = GetSystem(Name="FFF 5")
+system2.Move(
+    Position="Right",
+    RelativeTo=system3)
+geometry1 = system2.GetContainer(ComponentName="Geometry")
+geometry1.SetFile(FilePath="C:/Users/7541101/Desktop/ME 331/Project/AirFoilCad_20deg.STEP")
+geometry1.Edit(IsDiscoveryGeometry=True)
+system2.DisplayText = "20deg"
+geometryProperties1 = geometry1.GetGeometryProperties()
+geometryProperties1.GeometryImportAnalysisType = "AnalysisType_2D"
+meshComponent1 = system2.GetComponent(Name="Mesh")
+meshComponent1.Refresh()
+mesh1 = system2.GetContainer(ComponentName="Mesh")
+mesh1.Edit()
+mesh1.Exit()
+geometry1.Exit()
+Save(Overwrite=True)
+Save(Overwrite=True)
+Save(Overwrite=True)

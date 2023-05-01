@@ -1,0 +1,129 @@
+# encoding: utf-8
+# 2023 R1
+SetScriptVersion(Version="23.1.153")
+system1 = GetSystem(Name="FFF 1")
+system1.Copy(KeepConnections=True)
+system2 = GetSystem(Name="FFF 2")
+system2.DisplayText = "5deg"
+geometry1 = system2.GetContainer(ComponentName="Geometry")
+geometry1.SetFile(FilePath="C:/Users/7541101/Desktop/ME 331/Project/AirFoilCad_5deg.STEP")
+geometry1.Edit(IsDiscoveryGeometry=True)
+geometry1.Exit()
+geometryProperties1 = geometry1.GetGeometryProperties()
+geometryProperties1.GeometryImportAnalysisType = "AnalysisType_2D"
+meshComponent1 = system2.GetComponent(Name="Mesh")
+meshComponent1.Refresh()
+mesh1 = system2.GetContainer(ComponentName="Mesh")
+mesh1.Edit()
+mesh1.Exit()
+system2.Copy(KeepConnections=True)
+system3 = GetSystem(Name="FFF")
+system2.Move(
+    Position="Right",
+    RelativeTo=system3)
+system4 = GetSystem(Name="FFF 3")
+system4.Move(
+    Position="Right",
+    RelativeTo=system1)
+system4.DisplayText = "10deg"
+geometry2 = system4.GetContainer(ComponentName="Geometry")
+geometry2.Edit(IsDiscoveryGeometry=True)
+geometry2.Exit()
+system4.Delete()
+system2.Copy(KeepConnections=True)
+system5 = GetSystem(Name="FFF 3")
+system5.Move(
+    Position="Right",
+    RelativeTo=system1)
+geometry3 = system5.GetContainer(ComponentName="Geometry")
+geometry3.SetFile(FilePath="C:/Users/7541101/Desktop/ME 331/Project/AirFoilCad_10deg.STEP")
+system5.DisplayText = "10deg"
+meshComponent2 = system5.GetComponent(Name="Mesh")
+meshComponent2.Refresh()
+mesh2 = system5.GetContainer(ComponentName="Mesh")
+mesh2.Edit()
+mesh2.Exit()
+geometry3.Edit(IsDiscoveryGeometry=True)
+geometry3.Exit()
+meshComponent2.Refresh()
+mesh2.Edit()
+mesh2.Exit()
+system1.Copy(KeepConnections=True)
+system6 = GetSystem(Name="FFF 4")
+system6.Move(
+    Position="Right",
+    RelativeTo=system2)
+geometry4 = system6.GetContainer(ComponentName="Geometry")
+geometry4.SetFile(FilePath="C:/Users/7541101/Desktop/ME 331/Project/AirFoilCad_12deg.STEP")
+system6.DisplayText = "12deg"
+geometry4.Edit(IsDiscoveryGeometry=True)
+geometry4.Exit()
+meshComponent3 = system6.GetComponent(Name="Mesh")
+meshComponent3.Refresh()
+mesh3 = system6.GetContainer(ComponentName="Mesh")
+mesh3.Edit()
+geometry3.Edit(IsDiscoveryGeometry=True)
+geometry3.Exit()
+geometry3.Edit(IsSpaceClaimGeometry=True)
+mesh3.Exit()
+geometry3.Exit()
+geometryProperties2 = geometry4.GetGeometryProperties()
+geometryProperties2.GeometryImportAnalysisType = "AnalysisType_2D"
+geometry3.Edit(IsDiscoveryGeometry=True)
+geometryProperties3 = geometry3.GetGeometryProperties()
+geometryProperties3.GeometryImportAnalysisType = "AnalysisType_2D"
+meshComponent2.Refresh()
+mesh2.Edit()
+meshComponent2.Update(AllDependencies=True)
+mesh2.Exit()
+meshComponent2.Update(AllDependencies=True)
+mesh2.Edit()
+mesh2.Exit()
+meshComponent3.Refresh()
+mesh3.Edit()
+mesh3.Exit()
+system1.Copy(KeepConnections=True)
+system7 = GetSystem(Name="FFF 5")
+system7.Move(
+    Position="Right",
+    RelativeTo=system5)
+geometry5 = system7.GetContainer(ComponentName="Geometry")
+geometry5.SetFile(FilePath="C:/Users/7541101/Desktop/ME 331/Project/AirFoilCad_15deg.STEP")
+geometryProperties4 = geometry5.GetGeometryProperties()
+geometryProperties4.GeometryImportAnalysisType = "AnalysisType_2D"
+geometry5.Edit(IsDiscoveryGeometry=True)
+meshComponent4 = system7.GetComponent(Name="Mesh")
+meshComponent4.Refresh()
+mesh4 = system7.GetContainer(ComponentName="Mesh")
+mesh4.Edit()
+mesh4.Exit()
+system1.Copy(KeepConnections=True)
+system7.DisplayText = "15deg"
+system8 = GetSystem(Name="FFF 6")
+system8.Move(
+    Position="Right",
+    RelativeTo=system6)
+geometry6 = system8.GetContainer(ComponentName="Geometry")
+geometry6.SetFile(FilePath="C:/Users/7541101/Desktop/ME 331/Project/AirFoilCad_17deg.STEP")
+system8.DisplayText = "17deg"
+geometryProperties5 = geometry6.GetGeometryProperties()
+geometryProperties5.GeometryImportAnalysisType = "AnalysisType_2D"
+geometry6.Edit(IsDiscoveryGeometry=True)
+geometry5.Exit()
+meshComponent5 = system8.GetComponent(Name="Mesh")
+meshComponent5.Refresh()
+mesh5 = system8.GetContainer(ComponentName="Mesh")
+mesh5.Edit()
+mesh5.Edit()
+mesh5.Edit()
+mesh5.Exit()
+setupComponent1 = system8.GetComponent(Name="Setup")
+setupComponent1.Refresh()
+geometry6.Edit(IsDiscoveryGeometry=True)
+geometry6.Exit()
+meshComponent5.Update(AllDependencies=True)
+mesh5.Edit()
+mesh5.Exit()
+meshComponent5.Update(AllDependencies=True)
+mesh5.Edit()
+Save(Overwrite=True)
