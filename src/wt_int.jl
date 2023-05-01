@@ -23,10 +23,13 @@ function trap_int(x, y)
     Δx = (x[end]-x[1])/length(x)
 
     sum = Δx*0.5*y[1] + Δx*0.5*y[end]
+    #println("Init: ", sum)
 
     for i ∈ 2:(length(x)-1)
         sum = sum + Δx*y[i]
     end
+
+    #println("Fin: ", sum)
 
     return sum
 
@@ -34,7 +37,7 @@ end
 
 # Find the data
 
-function find_index(wt_data)
+function find_index(wt_data, velocity, α)
 
     for i ∈ eachindex(wt_data["Velocity [MPH]"])
         if (wt_data["Velocity [MPH]"][i] == velocity) && (wt_data["Angle of Attack"][i] == α)
@@ -45,11 +48,12 @@ function find_index(wt_data)
 
 end
 
-vel_index = find_index(wt_data)
+function find_Cl(wt_data, velocity, α, ρ, A)
+    vel_index = find_index(wt_data, velocity, α)
 
-# Integrating the bottom
+    # Integrating the bottom
 
-bottom_indices = (1 + vel_index):(9 + vel_index)
+    bottom_indices = (10 + vel_index):(17 + vel_index)
 
 lengths = []
 
@@ -58,23 +62,23 @@ for key in bottom
 end
 
 
-bottom_extrap = wt_data["Pressure AVG [psi]"][bottom_indices[end]] * (3.5 - length_dict["18"]) * 1
+    bottom_extrap = wt_data["Pressure AVG [psi]"][bottom_indices[end]] * (3.5 - length_dict["18"]) * 1
 
 bottom_force = (trap_int(lengths, wt_data["Pressure AVG [psi]"][bottom_indices]) * 1) #+ bottom_extrap
 
-# Integrating the top
+    # Integrating the top
 
-top_indices = (10 + vel_index):(17 + vel_index)
+    top_indices = (1 + vel_index):(9 + vel_index)
 
-lengths = []
-for key in top
+    lengths = []
+    for key in top
     push!(lengths, length_dict["$key"])
-end
+    end
 
-L_10 = length_dict["10"]
-m_top = ((wt_data["Pressure AVG [psi]"][bottom_indices[9]] - wt_data["Pressure AVG [psi]"][bottom_indices[8]]) / (L_10 - length_dict["9"]))
+    L_10 = length_dict["10"]
+    m_top = ((wt_data["Pressure AVG [psi]"][top_indices[9]] - wt_data["Pressure AVG [psi]"][top_indices[8]]) / (L_10 - length_dict["9"]))
 
-top_extrap = wt_data["Pressure AVG [psi]"][bottom_indices[9]] * (3.5 - L_10) + 0.5 * m_top *(3.5 - L_10) * 1
+    top_extrap = wt_data["Pressure AVG [psi]"][top_indices[9]] * (3.5 - L_10) + 0.5 * m_top *(3.5 - L_10) * 1
 
 top_force = trap_int(lengths, wt_data["Pressure AVG [psi]"][top_indices]) * 1 #+ top_extrap
 

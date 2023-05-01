@@ -50,3 +50,27 @@ end
 function mph_2_mps(speed)
     return (1/2.236936) * speed
 end
+
+function Coefficient(F, V)
+    
+    N = length(F);
+    C = Array{Float16, 1}(undef, N);
+    V_metric = V .* 0.44704
+
+    for i ∈ 1:N
+        C[i] = F[i]/(0.5*1.225*(V_metric[i]^2)*(0.0889))
+    end
+    return C
+end
+
+function plot_c_vs_α(α, Coefficient)
+
+    N = length(α[:,1])
+
+    plot()
+
+    for i ∈ 1:N
+        display(plot!(α[i,1:8], Coefficient[i,1:8]))
+    end
+
+end

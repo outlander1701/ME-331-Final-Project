@@ -1,5 +1,5 @@
 """
-Authors: Bennet Outland, Joshua Hoffman, and McCade Hughes
+Authors: Bennet Outland, Joshua Hoffman, McCade Hughes, Heath Buer, Joseph Romero
 Project: ME 331 Final Project
 Organization: South Dakota Mines
 Date: 05/05/2023
@@ -13,7 +13,7 @@ wt_data = CSV.File("./csv/wind_tunnel_data_frenchy.csv")
 
 # Params
 velocity = 40
-α = 0
+α = 20
 
 function trap_int(x, y)
     """
@@ -62,6 +62,7 @@ function process_data(wt_data, velocity, α; debug_msg=false)
 
     # Integrating the bottom
     bottom_indices = (10 + vel_index):(16 + vel_index)
+    push!(bottom_indices, 1)
 
     lengths_bottom = wt_data["Distance [m]"][bottom_indices]
 
@@ -71,7 +72,7 @@ function process_data(wt_data, velocity, α; debug_msg=false)
 
 
     # Top Integrations
-    top_indices = (1 + vel_index):(9 + vel_index)
+    top_indices = (vel_index):(9 + vel_index)
 
     lengths_top = wt_data["Distance [m]"][top_indices]
 
