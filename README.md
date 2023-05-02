@@ -1,1 +1,4 @@
 # ME-331-Final-Project
+
+## Summary
+In this project, we were tasked with determining the minimum length of a runway and the maximum thrust required for takeoff for a given airplane on an island (sea level). In order to determine this, the Coefficient of Drag and Coefficient of Lift need to be found for a given wing geometry. The values for the Coefficient of Lift and Drag for a Clark Y-14 Airfoil at different velocities and angles of attack were determined using both a computational fluid dynamics (CFD) simulation and a wind tunnel experiment. This data was used to determine the minimum runway length and maximum thrust required for take-off. As a result, the minimum runway length, with a safety factor of 1.25, was determined to be $4640$ m and the maximum thrust was determined to be 113 kN. 
