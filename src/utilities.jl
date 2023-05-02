@@ -63,14 +63,19 @@ function Coefficient(F, V)
     return C
 end
 
-function plot_c_vs_α(α, Coefficient)
+function plot_c_vs_α(α, Coefficient, V)
 
     N = length(α[:,1])
 
-    plot()
+    display(plot())
 
     for i ∈ 1:N
-        display(plot!(α[i,1:8], Coefficient[i,1:8]))
+        velocity_label = V[i]
+        plot!(α[i,1:8], Coefficient[i,1:8], label="$velocity_label [MPH]")
     end
+
+    xlabel!(L"Angle \, \, of \, \, Attack \, \,  (α) \, \, [deg]")
+    ylabel!(L"Coefficent \, \, of \, \, Lift \, \, (C_{L})")
+
 
 end
